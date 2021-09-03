@@ -1,0 +1,6 @@
+name: SMC-AntiLegs
+version: '${project.version}'
+main: dev.rollczi.antilegs.SMCAntiLegs
+api-version: 1.16
+authors: [ Rollczi ]
+website: https://rollczi.dev/, https://savemc.pl/
