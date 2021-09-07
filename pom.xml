@@ -39,7 +39,22 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <finalName>${project.name} ${project.version} (1.8-1.17)</finalName>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <relocations>
+                                <relocation>
+                                    <pattern>net.dzikoysk</pattern>
+                                    <shadedPattern>dev.rollczi.libs.net.dzikoysk</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.panda_lang</pattern>
+                                    <shadedPattern>dev.rollczi.libs.org.panda_lang</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>panda</pattern>
+                                    <shadedPattern>dev.rollczi.libs.panda</shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
