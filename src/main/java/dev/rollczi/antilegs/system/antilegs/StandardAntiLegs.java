@@ -7,7 +7,6 @@ package dev.rollczi.antilegs.system.antilegs;
 import dev.rollczi.antilegs.SMCAntiLegs;
 import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.system.CombatManager;
-import dev.rollczi.antilegs.utils.EnchantmentUtils;
 import dev.rollczi.antilegs.utils.ItemBuilder;
 import lombok.*;
 import org.bukkit.Bukkit;
@@ -21,7 +20,7 @@ import panda.std.Option;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class StandardImplAntiLegs implements AntiLegs {
+public class StandardAntiLegs implements AntiLegs {
 
     private final String name = "standard";
     private ItemBuilder item = ItemBuilder.none();
@@ -56,15 +55,15 @@ public class StandardImplAntiLegs implements AntiLegs {
         return true;
     }
 
-    public static StandardImplAntiLegs create() {
+    public static StandardAntiLegs create() {
         SMCAntiLegs plugin = SMCAntiLegs.getInstance();
         PluginConfig config = plugin.getConfigManager().getPluginConfig();
         PluginConfig.ItemConfig itemConfig = config.item;
-        StandardImplAntiLegs antiLegs = new StandardImplAntiLegs();
+        StandardAntiLegs antiLegs = new StandardAntiLegs();
         ItemBuilder builder = new ItemBuilder(itemConfig.material, 1, itemConfig.data)
                 .setLore(itemConfig.lore)
                 .setName(itemConfig.name)
-                .addEnchantments(EnchantmentUtils.deserialize(itemConfig.enchants));
+                .addEnchantments(itemConfig.enchants);
 
         antiLegs.setItem(builder);
         antiLegs.setDistance(config.distance);

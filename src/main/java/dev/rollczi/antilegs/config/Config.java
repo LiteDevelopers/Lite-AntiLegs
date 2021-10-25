@@ -6,11 +6,8 @@ package dev.rollczi.antilegs.config;
 
 import dev.rollczi.antilegs.SMCAntiLegs;
 import lombok.SneakyThrows;
-import net.dzikoysk.cdn.Cdn;
-import net.dzikoysk.cdn.CdnFactory;
 import net.dzikoysk.cdn.source.Source;
 import org.bukkit.Bukkit;
-import org.bukkit.enchantments.Enchantment;
 import panda.utilities.FileUtils;
 
 import java.io.File;
@@ -18,31 +15,20 @@ import java.io.Serializable;
 
 public class Config<T extends Serializable> {
 
-    private final Cdn cdn = CdnFactory
-            .createYamlLike()
-            .getSettings()
-            .withComposer(Character.class, Object::toString, (string) -> {
-                if (string.length() != 1) {
-                    throw new IllegalArgumentException("Ciąg znaków \"" + string + "\" jest niepoprawny! Oczekiwana długość to 1.");
-                }
-
-                return string.charAt(0);
-            })
-            .withComposer(Enchantment.class, Enchantment::getName, Enchantment::getByName)
-            .build();
-
+    private final ConfigManager configManager;
     private final File file;
     private final Class<T> configurationClass;
 
     private T pluginConfig;
 
-    private Config(Class<T> configurationClass, String fileName) {
+    private Config(ConfigManager configManager, Class<T> configurationClass, String fileName) {
+        this.configManager = configManager;
         this.configurationClass = configurationClass;
         this.file = new File(SMCAntiLegs.getInstance().getDataFolder(), fileName);
     }
 
     public void loadConfig() throws Exception {
-        this.pluginConfig = cdn.load(Source.of(file), configurationClass);
+        this.pluginConfig = configManager.getCdn().load(Source.of(file), configurationClass);
     }
 
     @SneakyThrows
@@ -52,7 +38,7 @@ public class Config<T extends Serializable> {
             return;
         }
 
-        FileUtils.overrideFile(file, cdn.render(pluginConfig));
+        FileUtils.overrideFile(file, configManager.getCdn().render(pluginConfig));
     }
 
     public T getPluginConfig() {
@@ -60,8 +46,8 @@ public class Config<T extends Serializable> {
     }
 
     @SneakyThrows
-    public static <T extends Serializable> Config<T> create(Class<T> configurationClass, String fileName) {
-        Config<T> config = new Config<>(configurationClass, fileName);
+    public static <T extends Serializable> Config<T> create(ConfigManager configManager, Class<T> configurationClass, String fileName) {
+        Config<T> config = new Config<>(configManager, configurationClass, fileName);
 
         if (config.file.exists()) {
             config.loadConfig();

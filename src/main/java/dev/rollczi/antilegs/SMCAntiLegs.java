@@ -13,7 +13,7 @@ import dev.rollczi.antilegs.liseners.PlayerInteract;
 import dev.rollczi.antilegs.system.CooldownManager;
 import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
 import dev.rollczi.antilegs.system.CombatManager;
-import dev.rollczi.antilegs.system.antilegs.StandardImplAntiLegs;
+import dev.rollczi.antilegs.system.antilegs.StandardAntiLegs;
 import lombok.Getter;
 import net.dzikoysk.funnycommands.FunnyCommands;
 import net.dzikoysk.funnycommands.resources.types.PlayerType;
@@ -42,7 +42,7 @@ public final class SMCAntiLegs extends JavaPlugin {
         this.combatManager = new CombatManager(this);
         this.cooldownManager = new CooldownManager();
         this.antiLegsManager = new AntiLegsManager();
-        this.antiLegsManager.registerAntiLeg(StandardImplAntiLegs.create());
+        this.antiLegsManager.registerAntiLeg(StandardAntiLegs.create());
         this.funnyCommands = FunnyCommands.configuration(() -> this)
                 .registerDefaultComponents()
                 .type(new PlayerType(super.getServer()))

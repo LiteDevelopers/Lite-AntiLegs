@@ -5,7 +5,6 @@
 package dev.rollczi.antilegs.config;
 
 import com.google.common.collect.ImmutableMap;
-import dev.rollczi.antilegs.utils.EnchantmentUtils;
 import lombok.NoArgsConstructor;
 import net.dzikoysk.cdn.entity.Contextual;
 import net.dzikoysk.cdn.entity.Description;
@@ -126,14 +125,14 @@ public final class PluginConfig implements Serializable {
         @Description("# jeśli nie chcesz enchantów ustaw \"enchants: []\"")
         @Description("# 1.16.5 https://helpch.at/docs/1.16.5/org/bukkit/enchantments/Enchantment.html")
         @Description("# 1.8.8  https://helpch.at/docs/1.8.8/org/bukkit/enchantments/Enchantment.html")
-        public Map<String, Integer> enchants;
+        public Map<Enchantment, Integer> enchants;
 
         public ItemConfig(Material material, int data, String name, List<String> lore, Map<Enchantment, Integer> enchants) {
             this.material = material;
             this.data = data;
             this.name = name;
             this.lore = lore;
-            this.enchants = EnchantmentUtils.serialize(enchants);
+            this.enchants = enchants;
         }
     }
 

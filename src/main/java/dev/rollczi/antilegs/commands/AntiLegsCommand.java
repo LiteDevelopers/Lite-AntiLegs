@@ -8,7 +8,7 @@ import dev.rollczi.antilegs.SMCAntiLegs;
 import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.system.antilegs.AntiLegs;
 import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
-import dev.rollczi.antilegs.system.antilegs.StandardImplAntiLegs;
+import dev.rollczi.antilegs.system.antilegs.StandardAntiLegs;
 import dev.rollczi.antilegs.utils.ChatUtils;
 import dev.rollczi.antilegs.utils.InventoryUtils;
 import net.dzikoysk.funnycommands.resources.ValidationException;
@@ -57,7 +57,7 @@ public final class AntiLegsCommand {
     private void give(SMCAntiLegs plugin, Player player) {
         PluginConfig config = plugin.getConfigManager().getPluginConfig();
         AntiLegsManager manager = plugin.getAntiLegsManager();
-        AntiLegs antiLegs = manager.getAntiLegs(StandardImplAntiLegs.class)
+        AntiLegs antiLegs = manager.getAntiLegs(StandardAntiLegs.class)
                 .orThrow(() -> new ValidationException("&cBłąd: Standardowa implementacja nie została zarejestrowana."));
 
         String message = config.giveAntiLegs.replaceAll("\\{TYPE}", antiLegs.getName());
