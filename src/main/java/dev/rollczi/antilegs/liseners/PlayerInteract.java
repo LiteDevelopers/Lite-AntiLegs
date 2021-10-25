@@ -79,7 +79,12 @@ public class PlayerInteract implements Listener {
 
                     manager.registerUse(player, antiLegs);
                     player.sendMessage(ChatUtils.color(config.useMessage));
+
                     item.setAmount(item.getAmount() - 1);
+                    player.setItemInHand(item);
+
+                    event.setCancelled(true);
+                    player.updateInventory();
                 });
     }
 
