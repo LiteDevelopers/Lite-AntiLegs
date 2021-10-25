@@ -8,6 +8,7 @@ import dev.rollczi.antilegs.SMCAntiLegs;
 import lombok.SneakyThrows;
 import net.dzikoysk.cdn.Cdn;
 import net.dzikoysk.cdn.CdnFactory;
+import net.dzikoysk.cdn.source.Source;
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import panda.utilities.FileUtils;
@@ -41,7 +42,7 @@ public class Config<T extends Serializable> {
     }
 
     public void loadConfig() throws Exception {
-        this.pluginConfig = cdn.load(file, configurationClass);
+        this.pluginConfig = cdn.load(Source.of(file), configurationClass);
     }
 
     @SneakyThrows
