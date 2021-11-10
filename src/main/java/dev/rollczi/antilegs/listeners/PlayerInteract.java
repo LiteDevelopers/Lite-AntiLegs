@@ -2,32 +2,25 @@
  * Copyright (c) 2021 Rollczi
  */
 
-package dev.rollczi.antilegs.liseners;
+package dev.rollczi.antilegs.listeners;
 
 import dev.rollczi.antilegs.SMCAntiLegs;
 import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.system.CooldownManager;
 import dev.rollczi.antilegs.system.antilegs.AntiLegs;
 import dev.rollczi.antilegs.utils.ChatUtils;
-import dev.rollczi.antilegs.utils.InventoryUtils;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import panda.std.Option;
 import panda.std.stream.PandaStream;
 
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @RequiredArgsConstructor

@@ -2,7 +2,7 @@
  * Copyright (c) 2021 Rollczi
  */
 
-package dev.rollczi.antilegs.liseners;
+package dev.rollczi.antilegs.listeners;
 
 import dev.rollczi.antilegs.SMCAntiLegs;
 import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
