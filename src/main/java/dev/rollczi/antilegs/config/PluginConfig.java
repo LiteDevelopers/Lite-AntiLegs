@@ -23,7 +23,7 @@ public final class PluginConfig implements Serializable {
             "#                                           ",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
             "#                                          #",
-            "#             SMC-AntiLegs v1.0            #",
+            "#            Lite-AntiLegs v2.0            #",
             "#                by Rollczi                #",
             "#                                          #",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
@@ -39,7 +39,7 @@ public final class PluginConfig implements Serializable {
     @Description("# ~~~~~~~~~~~~ #")
     @Description("#")
     @Description("# - AntyNogi /antilegs")
-    @Description("#     aliasy: /smc-antilegs, /antynogi")
+    @Description("#     aliasy: /antynogi")
     @Description("#     permisja: dev.rollczi.antilegs")
 
     @Description("")

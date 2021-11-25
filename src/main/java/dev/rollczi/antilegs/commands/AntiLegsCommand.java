@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.commands;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.system.antilegs.AntiLegs;
 import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
@@ -31,9 +31,9 @@ public final class AntiLegsCommand {
     @Section(route = "give")
     public static class Give {
 
-        private final SMCAntiLegs plugin;
+        private final LiteAntiLegs plugin;
 
-        public Give(SMCAntiLegs plugin) {
+        public Give(LiteAntiLegs plugin) {
             this.plugin = plugin;
         }
 

@@ -1,10 +1,10 @@
-# SMC-AntiLegs
+# Lite-AntiLegs
 Plugin "Anty-nogi" na serwer minecraft spigot.
 
 ### Przykładowe użycie API 
 ```java
-SMCAntiLegs smcAntiLegs = SMCAntiLegs.getInstance();
-AntiLegsManager manager = smcAntiLegs.getAntiLegsManager();
+LiteAntiLegs liteAntiLegs = LiteAntiLegs.getInstance();
+AntiLegsManager manager = liteAntiLegs.getAntiLegsManager();
 
 manager.getAntiLegs("standard").peek(standardAntiLegs -> {
     standardAntiLegs.setDistance(40);

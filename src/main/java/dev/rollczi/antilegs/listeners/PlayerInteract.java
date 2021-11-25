@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.listeners;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.system.CooldownManager;
 import dev.rollczi.antilegs.system.antilegs.AntiLegs;
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class PlayerInteract implements Listener {
 
-    private final SMCAntiLegs plugin;
+    private final LiteAntiLegs plugin;
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDamage(PlayerInteractEvent event) {

@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.commands;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.antilegs.system.antilegs.AntiLegs;
 import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
 import dev.rollczi.litecommands.inject.SingleArgumentHandler;
@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 
 public class AntiLegsArgument implements SingleArgumentHandler<AntiLegs> {
 
-    private final SMCAntiLegs plugin;
+    private final LiteAntiLegs plugin;
 
-    public AntiLegsArgument(SMCAntiLegs plugin) {
+    public AntiLegsArgument(LiteAntiLegs plugin) {
         this.plugin = plugin;
     }
 

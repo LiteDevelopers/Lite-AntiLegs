@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.listeners;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -16,7 +16,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 @RequiredArgsConstructor
 public class PlayerDamageByPlayer implements Listener {
 
-    private final SMCAntiLegs plugin;
+    private final LiteAntiLegs plugin;
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onDamage(EntityDamageByEntityEvent event) {

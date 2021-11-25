@@ -6,7 +6,7 @@ package dev.rollczi.antilegs.system;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.antilegs.config.PluginConfig;
 import org.bukkit.entity.Player;
 import panda.std.Option;
@@ -17,7 +17,7 @@ public class CombatManager {
 
     private final Cache<Player, Player> lastDamagers;
 
-    public CombatManager(SMCAntiLegs plugin) {
+    public CombatManager(LiteAntiLegs plugin) {
         PluginConfig config = plugin.getConfigManager().getPluginConfig();
 
         this.lastDamagers = CacheBuilder

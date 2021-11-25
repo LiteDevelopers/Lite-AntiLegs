@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.config;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.antilegs.config.composer.CharacterComposer;
 import dev.rollczi.antilegs.config.composer.EnchantmentComposer;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import java.util.Set;
 
 public class ConfigManager {
 
-    private final SMCAntiLegs plugin;
+    private final LiteAntiLegs plugin;
     private final Cdn cdn = CdnFactory
             .createYamlLike()
             .getSettings()
@@ -33,7 +33,7 @@ public class ConfigManager {
 
     @Getter private PluginConfig pluginConfig;
 
-    public ConfigManager(SMCAntiLegs plugin) {
+    public ConfigManager(LiteAntiLegs plugin) {
         this.plugin = plugin;
     }
 

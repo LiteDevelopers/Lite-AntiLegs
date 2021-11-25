@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.commands;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.litecommands.inject.SingleArgumentHandler;
 import dev.rollczi.litecommands.valid.ValidationCommandException;
 import dev.rollczi.litecommands.valid.ValidationInfo;
@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 
 public class PlayerArgument implements SingleArgumentHandler<Player> {
 
-    private final SMCAntiLegs plugin;
+    private final LiteAntiLegs plugin;
 
-    public PlayerArgument(SMCAntiLegs plugin) {
+    public PlayerArgument(LiteAntiLegs plugin) {
         this.plugin = plugin;
     }
 

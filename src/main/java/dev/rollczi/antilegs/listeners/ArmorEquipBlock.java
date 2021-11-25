@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.listeners;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.EventHandler;
@@ -17,7 +17,7 @@ import panda.std.stream.PandaStream;
 @RequiredArgsConstructor
 public class ArmorEquipBlock implements Listener {
 
-    private final SMCAntiLegs plugin;
+    private final LiteAntiLegs plugin;
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onClick(InventoryClickEvent event) {

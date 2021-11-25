@@ -28,9 +28,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.stream.Stream;
 
-public final class SMCAntiLegs extends JavaPlugin {
+public final class LiteAntiLegs extends JavaPlugin {
 
-    @Getter private static SMCAntiLegs instance;
+    @Getter private static LiteAntiLegs instance;
 
     @Getter private ConfigManager configManager;
     @Getter private CombatManager combatManager;
@@ -50,10 +50,10 @@ public final class SMCAntiLegs extends JavaPlugin {
 
         PluginConfig config = this.configManager.getPluginConfig();
 
-        this.liteCommands = LiteBukkitFactory.builder(this.getServer(), "smc-antilegs")
+        this.liteCommands = LiteBukkitFactory.builder(this.getServer(), "lite-antilegs")
                 .argument(Player.class, new PlayerArgument(this))
                 .argument(AntiLegs.class, new AntiLegsArgument(this))
-                .bind(SMCAntiLegs.class, this)
+                .bind(LiteAntiLegs.class, this)
                 .message(ValidationInfo.NO_PERMISSION, config.onPermission)
                 .command(AntiLegsCommand.class)
                 .register();

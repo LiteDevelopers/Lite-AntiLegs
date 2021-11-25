@@ -4,7 +4,7 @@
 
 package dev.rollczi.antilegs.system.antilegs;
 
-import dev.rollczi.antilegs.SMCAntiLegs;
+import dev.rollczi.antilegs.LiteAntiLegs;
 import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.system.CombatManager;
 import dev.rollczi.antilegs.utils.ItemBuilder;
@@ -34,7 +34,7 @@ public class StandardAntiLegs implements AntiLegs {
 
     @Override
     public boolean use(Player player) {
-        SMCAntiLegs plugin = SMCAntiLegs.getInstance();
+        LiteAntiLegs plugin = LiteAntiLegs.getInstance();
         CombatManager combatManager = plugin.getCombatManager();
 
         Option<Player> damagerOp = combatManager.getLastDamager(player);
@@ -56,7 +56,7 @@ public class StandardAntiLegs implements AntiLegs {
     }
 
     public static StandardAntiLegs create() {
-        SMCAntiLegs plugin = SMCAntiLegs.getInstance();
+        LiteAntiLegs plugin = LiteAntiLegs.getInstance();
         PluginConfig config = plugin.getConfigManager().getPluginConfig();
         PluginConfig.ItemConfig itemConfig = config.item;
         StandardAntiLegs antiLegs = new StandardAntiLegs();
