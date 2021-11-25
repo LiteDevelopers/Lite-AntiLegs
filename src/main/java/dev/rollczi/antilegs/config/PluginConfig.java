@@ -48,9 +48,10 @@ public final class PluginConfig implements Serializable {
     @Description("# ~~~~~~~~~~~~ #")
     public String useMessage = "&aAnty-Nogi zostały aktywowane!";
     public String useNo = "&cAnty-Nogi nie mogą zostać aktywowane w tej chwili!";
-    public String useNoReUse = "&cPoczekaj {SEC} sekund!";
+    public String useNoReUse = "&cPoczekaj {SECONDS} sekund ({MILLI_SECONDS}ms) ({SECONDS}.{MILLI_WIHOUT_SECONDS} sek)!";
     public String onFoundPlayer = "&cNie ma takiego gracza!";
-    public String commandOnlyPlayer = "&cKomedna tylko dla gracza!";
+    public String onPermission = "&cNie masz permisji do tego polecenia!";
+    public String giveAntiLegsAdmin = "&aPomyślnie dano antynogi graczowi!";
     public String giveAntiLegs = "&aDostałeś Antynogi {TYPE}!";
 
     @Description("")

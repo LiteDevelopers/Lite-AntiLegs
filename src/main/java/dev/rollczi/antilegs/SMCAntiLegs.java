@@ -4,20 +4,25 @@
 
 package dev.rollczi.antilegs;
 
+import dev.rollczi.antilegs.commands.AntiLegsArgument;
 import dev.rollczi.antilegs.commands.AntiLegsCommand;
-import dev.rollczi.antilegs.commands.PluginBind;
+import dev.rollczi.antilegs.commands.PlayerArgument;
 import dev.rollczi.antilegs.config.ConfigManager;
+import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.listeners.ArmorEquipBlock;
 import dev.rollczi.antilegs.listeners.PlayerDamageByPlayer;
 import dev.rollczi.antilegs.listeners.PlayerInteract;
 import dev.rollczi.antilegs.system.CooldownManager;
+import dev.rollczi.antilegs.system.antilegs.AntiLegs;
 import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
 import dev.rollczi.antilegs.system.CombatManager;
 import dev.rollczi.antilegs.system.antilegs.StandardAntiLegs;
+import dev.rollczi.litecommands.LiteCommands;
+import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
+import dev.rollczi.litecommands.valid.ValidationInfo;
 import lombok.Getter;
-import net.dzikoysk.funnycommands.FunnyCommands;
-import net.dzikoysk.funnycommands.resources.types.PlayerType;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,24 +36,27 @@ public final class SMCAntiLegs extends JavaPlugin {
     @Getter private CombatManager combatManager;
     @Getter private CooldownManager cooldownManager;
     @Getter private AntiLegsManager antiLegsManager;
-    @Getter private FunnyCommands funnyCommands;
+    @Getter private LiteCommands liteCommands;
 
     @Override
     public void onEnable() {
         instance = this;
-        this.configManager = new ConfigManager();
+        this.configManager = new ConfigManager(this);
         this.configManager.loadConfigs(); // load data from config file
-        this.configManager.saveConfigs(); // add new variables to the config file if they are missing
         this.combatManager = new CombatManager(this);
         this.cooldownManager = new CooldownManager();
         this.antiLegsManager = new AntiLegsManager();
         this.antiLegsManager.registerAntiLeg(StandardAntiLegs.create());
-        this.funnyCommands = FunnyCommands.configuration(() -> this)
-                .registerDefaultComponents()
-                .type(new PlayerType(super.getServer()))
-                .bind(new PluginBind(this))
-                .commands(AntiLegsCommand.class)
-                .install();
+
+        PluginConfig config = this.configManager.getPluginConfig();
+
+        this.liteCommands = LiteBukkitFactory.builder(this.getServer(), "smc-antilegs")
+                .argument(Player.class, new PlayerArgument(this))
+                .argument(AntiLegs.class, new AntiLegsArgument(this))
+                .bind(SMCAntiLegs.class, this)
+                .message(ValidationInfo.NO_PERMISSION, config.onPermission)
+                .command(AntiLegsCommand.class)
+                .register();
 
         PluginManager pluginManager = Bukkit.getPluginManager();
         Stream.of(
@@ -60,7 +68,7 @@ public final class SMCAntiLegs extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        funnyCommands.dispose();
+        liteCommands.getCommandManager().unregisterCommands();
     }
 
 }

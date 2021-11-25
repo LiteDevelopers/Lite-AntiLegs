@@ -11,59 +11,58 @@ import dev.rollczi.antilegs.system.antilegs.AntiLegsManager;
 import dev.rollczi.antilegs.system.antilegs.StandardAntiLegs;
 import dev.rollczi.antilegs.utils.ChatUtils;
 import dev.rollczi.antilegs.utils.InventoryUtils;
-import net.dzikoysk.funnycommands.resources.ValidationException;
-import net.dzikoysk.funnycommands.stereotypes.FunnyCommand;
-import net.dzikoysk.funnycommands.stereotypes.FunnyComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
+import dev.rollczi.litecommands.LiteSender;
+import dev.rollczi.litecommands.annotations.Arg;
+import dev.rollczi.litecommands.annotations.Execute;
+import dev.rollczi.litecommands.annotations.IgnoreMethod;
+import dev.rollczi.litecommands.annotations.Permission;
+import dev.rollczi.litecommands.annotations.Required;
+import dev.rollczi.litecommands.annotations.Section;
+import dev.rollczi.litecommands.annotations.UsageMessage;
+import dev.rollczi.litecommands.valid.ValidationCommandException;
+import dev.rollczi.litecommands.valid.ValidationInfo;
 import org.bukkit.entity.Player;
 
-@FunnyComponent
+@Section(route = "antilegs", aliases = {"antynogi"})
+@Permission("dev.rollczi.antilegs")
+@UsageMessage("&cPrawidłowe użycie &8» &7/antynogi give|give -other>")
 public final class AntiLegsCommand {
 
-    @FunnyCommand(
-            name = "antilegs",
-            aliases = {"smc-antilegs", "antynogi"},
-            permission = "dev.rollczi.antilegs",
-            acceptsExceeded = true
-    )
-    public void execute(SMCAntiLegs plugin, CommandSender sender, String[] args) {
-        PluginConfig config = plugin.getConfigManager().getPluginConfig();
+    @Section(route = "give")
+    public static class Give {
 
-        if (args.length == 0 || !args[0].equalsIgnoreCase("give")) {
-            sender.sendMessage(ChatUtils.color("&a/antynogi give [gracz]"));
-            return;
+        private final SMCAntiLegs plugin;
+
+        public Give(SMCAntiLegs plugin) {
+            this.plugin = plugin;
         }
 
-        if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
-            Player player = Bukkit.getPlayer(args[1]);
+        @Execute @Required(1)
+        @UsageMessage("&cPrawidłowe użycie &8» &7/antynogi give <gracz>")
+        public void executeGive(LiteSender sender, @Arg(0) Player player) {
+            AntiLegsManager manager = plugin.getAntiLegsManager();
+            AntiLegs antiLegs = manager.getAntiLegs(StandardAntiLegs.class)
+                    .orThrow(() -> new ValidationCommandException(ValidationInfo.CUSTOM, "&cBłąd: Standardowa implementacja nie została zarejestrowana."));
 
-            if (player == null) {
-                throw new ValidationException(config.onFoundPlayer);
-            }
-
-            give(plugin, player);
-            return;
+            give(sender, player, antiLegs);
         }
 
-        if (!(sender instanceof Player)) {
-            throw new ValidationException(config.commandOnlyPlayer);
+        @Execute(route = "-other") @Required(2)
+        @UsageMessage("&cPrawidłowe użycie &8» &7/antynogi give -other <antilegs> <gracz>")
+        public void executeGiveOther(LiteSender sender, @Arg(0) AntiLegs antiLegs, @Arg(1) Player player) {
+            give(sender, player, antiLegs);
         }
 
-        Player player = (Player) sender;
-        give(plugin, player);
-    }
+        @IgnoreMethod
+        private void give(LiteSender sender, Player player, AntiLegs antiLegs) {
+            PluginConfig config = plugin.getConfigManager().getPluginConfig();
+            String message = config.giveAntiLegs.replaceAll("\\{TYPE}", antiLegs.getName());
 
-    private void give(SMCAntiLegs plugin, Player player) {
-        PluginConfig config = plugin.getConfigManager().getPluginConfig();
-        AntiLegsManager manager = plugin.getAntiLegsManager();
-        AntiLegs antiLegs = manager.getAntiLegs(StandardAntiLegs.class)
-                .orThrow(() -> new ValidationException("&cBłąd: Standardowa implementacja nie została zarejestrowana."));
+            sender.sendMessage(config.giveAntiLegsAdmin);
+            player.sendMessage(ChatUtils.color(message));
+            InventoryUtils.addToInventory(player, antiLegs.getItem().build());
+        }
 
-        String message = config.giveAntiLegs.replaceAll("\\{TYPE}", antiLegs.getName());
-
-        player.sendMessage(ChatUtils.color(message));
-        InventoryUtils.addToInventory(player, antiLegs.getItem().build());
     }
 
 }

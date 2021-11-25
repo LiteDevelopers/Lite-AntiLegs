@@ -54,9 +54,14 @@ public class PlayerInteract implements Listener {
         CooldownManager manager = plugin.getCooldownManager();
 
         manager.getCooldownTime(player, antiLegs)
-                .peek(cooldownTime -> {
-                    long seconds = TimeUnit.MILLISECONDS.toSeconds(cooldownTime);
-                    String message = config.useNoReUse.replaceAll("\\{SEC}", String.valueOf(seconds));
+                .peek(milliseconds -> {
+                    long seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds);
+                    long milliSuffix = TimeUnit.MILLISECONDS.toSeconds(milliseconds - TimeUnit.SECONDS.toMillis(seconds));
+                    String message = config.useNoReUse;
+
+                    message = message.replaceAll("\\{SECONDS}", String.valueOf(seconds));
+                    message = message.replaceAll("\\{MILLI_SECONDS}", String.valueOf(milliseconds));
+                    message = message.replaceAll("\\{MILLI_WIHOUT_SECONDS}", String.valueOf(milliSuffix));
 
                     player.sendMessage(ChatUtils.color(message));
                     event.setCancelled(true);
