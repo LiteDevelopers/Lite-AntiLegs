@@ -12,6 +12,7 @@ import lombok.SneakyThrows;
 import net.dzikoysk.cdn.Cdn;
 import net.dzikoysk.cdn.CdnFactory;
 import net.dzikoysk.cdn.source.Source;
+import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 
 import java.io.File;
@@ -44,6 +45,13 @@ public class ConfigManager {
     @SneakyThrows
     public <T extends Serializable> T generate(Class<T> configurationClass, String fileName) {
         File file = new File(plugin.getDataFolder(), fileName);
+
+        if (!plugin.getDataFolder().exists()) {
+            if (!plugin.getDataFolder().mkdir()) {
+                Bukkit.getLogger().warning("Can't create data folder!");
+            }
+        }
+
         T load = cdn.load(Source.of(file), configurationClass);
 
         cdn.render(load, file);
