@@ -68,7 +68,7 @@ public final class LiteAntiLegs extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        liteCommands.getCommandManager().unregisterCommands();
+        liteCommands.getPlatformManager().unregisterCommands();
     }
 
 }
