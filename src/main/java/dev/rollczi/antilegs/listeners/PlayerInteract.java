@@ -56,7 +56,7 @@ public class PlayerInteract implements Listener {
         manager.getCooldownTime(player, antiLegs)
                 .peek(milliseconds -> {
                     long seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds);
-                    long milliSuffix = TimeUnit.MILLISECONDS.toSeconds(milliseconds - TimeUnit.SECONDS.toMillis(seconds));
+                    String milliSuffix = String.format("%03d", milliseconds - TimeUnit.SECONDS.toMillis(seconds));
                     String message = config.useNoReUse;
 
                     message = message.replaceAll("\\{SECONDS}", String.valueOf(seconds));
