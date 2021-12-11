@@ -1,7 +1,7 @@
 # Lite-AntiLegs
 Plugin "Anty-nogi" na serwer minecraft spigot.
 
-### Download [[link]](https://github.com/LiteDevelopers/Lite-AntiLegs/releases) 
+#### Download [[link]](https://github.com/LiteDevelopers/Lite-AntiLegs/releases) 
 
 ### Przykładowe użycie API 
 ```java
