@@ -52,18 +52,6 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder setData(int data) {
-        MaterialData materialData = itemStack.getData();
-
-        if (materialData == null) {
-            return this;
-        }
-
-        materialData.setData((byte) data);
-        itemStack.setData(materialData);
-        return this;
-    }
-
     public ItemBuilder setName(String name) {
         return onMeta(meta -> meta.setDisplayName(ChatUtils.color(name)));
     }
@@ -115,6 +103,14 @@ public class ItemBuilder {
 
             meta.removeItemFlags(itemFlag);
         });
+    }
+
+    public ItemBuilder setItemFlags(List<ItemFlag> flags) {
+        for (ItemFlag flag : flags) {
+            setItemFlag(flag, true);
+        }
+
+        return this;
     }
 
     public ItemStack build() {

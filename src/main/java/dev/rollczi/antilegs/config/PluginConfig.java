@@ -10,6 +10,7 @@ import net.dzikoysk.cdn.entity.Contextual;
 import net.dzikoysk.cdn.entity.Description;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -82,7 +83,8 @@ public final class PluginConfig implements Serializable {
             0,
             "&7AntyNogi",
             Arrays.asList("&7", "&7Kliknij, trzymając w ręce!"),
-            Collections.singletonMap(Enchantment.DURABILITY, 10)
+            Collections.singletonMap(Enchantment.DURABILITY, 10),
+            Collections.singletonList(ItemFlag.HIDE_ENCHANTS)
     );
 
     @Description("")
@@ -128,12 +130,15 @@ public final class PluginConfig implements Serializable {
         @Description("# 1.8.8  https://helpch.at/docs/1.8.8/org/bukkit/enchantments/Enchantment.html")
         public Map<Enchantment, Integer> enchants;
 
-        public ItemConfig(Material material, int data, String name, List<String> lore, Map<Enchantment, Integer> enchants) {
+        public List<ItemFlag> itemFlags;
+
+        public ItemConfig(Material material, int data, String name, List<String> lore, Map<Enchantment, Integer> enchants, List<ItemFlag> flags) {
             this.material = material;
             this.data = data;
             this.name = name;
             this.lore = lore;
             this.enchants = enchants;
+            this.itemFlags = flags;
         }
     }
 

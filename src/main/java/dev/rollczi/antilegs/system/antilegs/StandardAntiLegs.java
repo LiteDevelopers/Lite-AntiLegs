@@ -63,6 +63,7 @@ public class StandardAntiLegs implements AntiLegs {
         ItemBuilder builder = new ItemBuilder(itemConfig.material, 1, itemConfig.data)
                 .setLore(itemConfig.lore)
                 .setName(itemConfig.name)
+                .setItemFlags(itemConfig.itemFlags)
                 .addEnchantments(itemConfig.enchants);
 
         antiLegs.setItem(builder);
