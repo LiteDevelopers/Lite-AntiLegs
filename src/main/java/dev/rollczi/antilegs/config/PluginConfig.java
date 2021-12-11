@@ -24,7 +24,7 @@ public final class PluginConfig implements Serializable {
             "#                                           ",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
             "#                                          #",
-            "#            Lite-AntiLegs v2.0            #",
+            "#           Lite-AntiLegs v2.0.1           #",
             "#                by Rollczi                #",
             "#                                          #",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
