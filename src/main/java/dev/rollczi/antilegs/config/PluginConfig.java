@@ -13,8 +13,10 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ public final class PluginConfig implements Serializable {
             "#                                           ",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
             "#                                          #",
-            "#           Lite-AntiLegs v2.0.1           #",
+            "#           Lite-AntiLegs v2.0.2           #",
             "#                by Rollczi                #",
             "#                                          #",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
@@ -110,16 +112,16 @@ public final class PluginConfig implements Serializable {
         @Description("# Typ itemu")
         @Description("# 1.16.5 https://helpch.at/docs/1.16.5/org/bukkit/Material.html")
         @Description("# 1.8.8  https://helpch.at/docs/1.8.8/org/bukkit/Material.html")
-        public Material material;
+        public Material material = Material.STONE;
 
-        public int data;
+        public int data = 0;
 
-        public String name;
+        public String name = "none";
 
         @Description("# ")
         @Description("# Opis itemku")
         @Description("# jeśli nie chcesz lore ustaw \"lore: []\"")
-        public List<String> lore;
+        public List<String> lore = new ArrayList<>();
 
         @Description("# ")
         @Description("# Enchant oraz jego level")
@@ -128,9 +130,9 @@ public final class PluginConfig implements Serializable {
         @Description("# jeśli nie chcesz enchantów ustaw \"enchants: []\"")
         @Description("# 1.16.5 https://helpch.at/docs/1.16.5/org/bukkit/enchantments/Enchantment.html")
         @Description("# 1.8.8  https://helpch.at/docs/1.8.8/org/bukkit/enchantments/Enchantment.html")
-        public Map<Enchantment, Integer> enchants;
+        public Map<Enchantment, Integer> enchants = new HashMap<>();
 
-        public List<ItemFlag> itemFlags;
+        public List<ItemFlag> itemFlags = new ArrayList<>();
 
         public ItemConfig(Material material, int data, String name, List<String> lore, Map<Enchantment, Integer> enchants, List<ItemFlag> flags) {
             this.material = material;

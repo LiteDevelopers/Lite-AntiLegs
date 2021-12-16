@@ -46,7 +46,7 @@ public final class LiteAntiLegs extends JavaPlugin {
         this.combatManager = new CombatManager(this);
         this.cooldownManager = new CooldownManager();
         this.antiLegsManager = new AntiLegsManager();
-        this.antiLegsManager.registerAntiLeg(StandardAntiLegs.create());
+        this.antiLegsManager.registerAntiLeg(StandardAntiLegs.create(configManager.getPluginConfig()));
 
         PluginConfig config = this.configManager.getPluginConfig();
 

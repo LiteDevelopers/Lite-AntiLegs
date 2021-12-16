@@ -6,7 +6,7 @@
 
     <groupId>dev.rollczi</groupId>
     <artifactId>antynogi</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Lite-AntiLegs</name>
@@ -44,19 +44,19 @@
                             <relocations>
                                 <relocation>
                                     <pattern>net.dzikoysk</pattern>
-                                    <shadedPattern>dev.rollczi.libs.net.dzikoysk</shadedPattern>
+                                    <shadedPattern>dev.rollczi.antilegs.libs.net.dzikoysk</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>dev.rollczi.litecommands</pattern>
-                                    <shadedPattern>dev.rollczi.libs.dev.rollczi.litecommands</shadedPattern>
+                                    <shadedPattern>dev.rollczi.antilegs.libs.dev.rollczi.litecommands</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>org.panda_lang</pattern>
-                                    <shadedPattern>dev.rollczi.libs.org.panda_lang</shadedPattern>
+                                    <shadedPattern>dev.rollczi.antilegs.libs.org.panda_lang</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>panda</pattern>
-                                    <shadedPattern>dev.rollczi.libs.panda</shadedPattern>
+                                    <shadedPattern>dev.rollczi.antilegs.libs.panda</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
@@ -92,19 +92,26 @@
         <dependency>
             <groupId>net.dzikoysk</groupId>
             <artifactId>cdn</artifactId>
-            <version>1.11.6</version>
+            <version>1.13.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.panda-lang</groupId>
+            <artifactId>expressible</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.panda-lang</groupId>
+            <artifactId>panda-utilities</artifactId>
+            <version>0.5.0-alpha</version>
         </dependency>
 
         <!-- FunnyCommands -->
         <dependency>
             <groupId>dev.rollczi.litecommands</groupId>
-            <artifactId>core</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.rollczi.litecommands</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.3.2</version>
+            <version>1.4.0</version>
+            <scope>compile</scope>
         </dependency>
 
 

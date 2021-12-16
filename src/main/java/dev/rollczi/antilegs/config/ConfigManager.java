@@ -11,14 +11,14 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import net.dzikoysk.cdn.Cdn;
 import net.dzikoysk.cdn.CdnFactory;
+import net.dzikoysk.cdn.source.Resource;
 import net.dzikoysk.cdn.source.Source;
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
+import panda.std.function.ThrowingFunction;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 public class ConfigManager {
 
@@ -29,8 +29,6 @@ public class ConfigManager {
             .withComposer(Character.class, new CharacterComposer())
             .withComposer(Enchantment.class, new EnchantmentComposer())
             .build();
-
-    private final Set<Object> configs = new HashSet<>();
 
     @Getter private PluginConfig pluginConfig;
 
@@ -52,11 +50,12 @@ public class ConfigManager {
             }
         }
 
-        T load = cdn.load(Source.of(file), configurationClass);
+        Resource resource = Source.of(file);
+        T load = cdn.load(resource, configurationClass)
+                .orElseThrow(ThrowingFunction.identity());
 
-        cdn.render(load, file);
+        cdn.render(load, resource);
 
-        this.configs.add(load);
         return load;
     }
 

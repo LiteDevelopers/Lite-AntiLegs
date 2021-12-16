@@ -55,9 +55,7 @@ public class StandardAntiLegs implements AntiLegs {
         return true;
     }
 
-    public static StandardAntiLegs create() {
-        LiteAntiLegs plugin = LiteAntiLegs.getInstance();
-        PluginConfig config = plugin.getConfigManager().getPluginConfig();
+    public static StandardAntiLegs create(PluginConfig config) {
         PluginConfig.ItemConfig itemConfig = config.item;
         StandardAntiLegs antiLegs = new StandardAntiLegs();
         ItemBuilder builder = new ItemBuilder(itemConfig.material, 1, itemConfig.data)
@@ -75,7 +73,7 @@ public class StandardAntiLegs implements AntiLegs {
 
         recipe.shape("123", "456", "789");
         config.crafting.entrySet().stream()
-                .filter(m -> m.getValue() == Material.AIR)
+                .filter(entry -> entry.getValue() != Material.AIR)
                 .forEach(entry -> recipe.setIngredient(entry.getKey(), entry.getValue()));
 
         Bukkit.getServer().addRecipe(recipe);

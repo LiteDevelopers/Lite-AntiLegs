@@ -4,9 +4,9 @@
 
 package dev.rollczi.antilegs.config.composer;
 
-import net.dzikoysk.cdn.serialization.Composer;
-import net.dzikoysk.cdn.serialization.SimpleDeserializer;
-import net.dzikoysk.cdn.serialization.SimpleSerializer;
+import net.dzikoysk.cdn.serdes.Composer;
+import net.dzikoysk.cdn.serdes.SimpleDeserializer;
+import net.dzikoysk.cdn.serdes.SimpleSerializer;
 
 public interface SimpleComposer<T> extends Composer<T>, SimpleDeserializer<T>, SimpleSerializer<T> {
 
