@@ -22,6 +22,8 @@ import panda.std.Option;
 import panda.std.stream.PandaStream;
 
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 public class PlayerInteract implements Listener {
@@ -55,13 +57,15 @@ public class PlayerInteract implements Listener {
 
         manager.getCooldownTime(player, antiLegs)
                 .peek(milliseconds -> {
-                    long seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds);
-                    String milliSuffix = String.format("%03d", milliseconds - TimeUnit.SECONDS.toMillis(seconds));
-                    String message = config.useNoReUse;
 
-                    message = message.replaceAll("\\{SECONDS}", String.valueOf(seconds));
-                    message = message.replaceAll("\\{MILLI_SECONDS}", String.valueOf(milliseconds));
-                    message = message.replaceAll("\\{MILLI_WIHOUT_SECONDS}", String.valueOf(milliSuffix));
+                    long seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds);
+
+                    String milliSuffix = String.format("%03d", milliseconds - TimeUnit.SECONDS.toMillis(seconds));
+
+                    String message = config.useNoReUse
+                            .replace("\\{SECONDS}", String.valueOf(seconds))
+                            .replace("\\{MILLI_SECONDS}", String.valueOf(milliseconds))
+                            .replace("\\{MILLI_WIHOUT_SECONDS}", String.valueOf(milliSuffix));
 
                     player.sendMessage(ChatUtils.color(message));
                     event.setCancelled(true);

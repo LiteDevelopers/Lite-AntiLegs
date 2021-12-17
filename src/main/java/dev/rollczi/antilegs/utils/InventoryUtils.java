@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class InventoryUtils {
+public final class InventoryUtils {
 
     private InventoryUtils() {}
 
@@ -27,17 +27,12 @@ public class InventoryUtils {
         }
 
         for (ItemStack itemInv : inventory.getContents()) {
-            if (itemInv == null) {
+
+            if (itemInv == null || !itemInv.isSimilar(item)) {
                 continue;
             }
 
-            if (!itemInv.isSimilar(item)) {
-                continue;
-            }
-
-            if (itemInv.getMaxStackSize() > itemInv.getAmount()) {
-                return true;
-            }
+            return itemInv.getMaxStackSize() > itemInv.getAmount();
         }
 
         return false;

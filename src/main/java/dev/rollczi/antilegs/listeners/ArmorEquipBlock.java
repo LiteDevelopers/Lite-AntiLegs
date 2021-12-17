@@ -24,18 +24,18 @@ public class ArmorEquipBlock implements Listener {
         AntiLegsManager legsManager = plugin.getAntiLegsManager();
 
         if (event.getSlotType() == InventoryType.SlotType.ARMOR) {
-            PandaStream.of(legsManager.getAntiLegs())
+            event.setCancelled(PandaStream.of(legsManager.getAntiLegs())
                     .find(antiLegs -> antiLegs.getItem().build().isSimilar(event.getCursor()))
-                    .peek((antiLegs) -> event.setCancelled(true));
+                    .isDefined());
         }
 
         Inventory inventory = event.getInventory();
         ClickType click = event.getClick();
 
         if (click.isShiftClick() && inventory.getType() == InventoryType.CRAFTING) {
-            PandaStream.of(legsManager.getAntiLegs())
+            event.setCancelled(PandaStream.of(legsManager.getAntiLegs())
                     .find(antiLegs -> antiLegs.getItem().build().isSimilar(event.getCurrentItem()))
-                    .peek((antiLegs) -> event.setCancelled(true));
+                    .isDefined());
         }
     }
 

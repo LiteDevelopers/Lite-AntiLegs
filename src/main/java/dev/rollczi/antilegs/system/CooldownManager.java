@@ -25,14 +25,11 @@ public class CooldownManager {
     }
 
     public Option<Long> getCooldownTime(Player player, AntiLegs antiLegs) {
+
         long millis = System.currentTimeMillis() - getCacheOrCreate(player).getOrDefault(antiLegs, 0L);
         long cooldown = TimeUnit.SECONDS.toMillis(antiLegs.getCooldown());
 
-        if (millis >= cooldown) {
-            return Option.none();
-        }
-
-        return Option.of(cooldown - millis);
+        return (millis >= cooldown ? Option.none() : Option.of(cooldown - millis));
     }
 
     private Map<AntiLegs, Long> getCacheOrCreate(Player player) {
