@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022 Rollczi
+ */
+
 package dev.rollczi.antilegs.utils;
 
 import org.bukkit.entity.Player;

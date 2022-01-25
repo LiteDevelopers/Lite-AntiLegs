@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Rollczi
+ * Copyright (c) 2022 Rollczi
  */
 
 package dev.rollczi.antilegs.config.composer;
