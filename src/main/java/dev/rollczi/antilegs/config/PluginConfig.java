@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class PluginConfig implements Serializable {
+public final class PluginConfig extends AbstractConfigWithResource {
+
+    public PluginConfig(File folder, String child) {
+        super(folder, child);
+    }
 
     @Description({
             "#                                           ",
@@ -40,10 +45,14 @@ public final class PluginConfig implements Serializable {
     @Description("# ~~~~~~~~~~~~ #")
     @Description("#    Komendy   #")
     @Description("# ~~~~~~~~~~~~ #")
-    @Description("#")
-    @Description("# - AntyNogi /antilegs")
-    @Description("#     aliasy: /antynogi")
-    @Description("#     permisja: dev.rollczi.antilegs")
+    @Description("# AntyNogi - /antilegs ")
+    @Description("# (aliasy: /antynogi)")
+    @Description("")
+    @Description("# ~~~~~~~~~~~~ #")
+    @Description("#   Permisje   #")
+    @Description("# ~~~~~~~~~~~~ #")
+    @Description("# /antilegs give:   dev.rollczi.antilegs.give")
+    @Description("# /antilegs reload: dev.rollczi.antilegs.reload")
 
     @Description("")
     @Description("# ~~~~~~~~~~~~ #")
@@ -52,9 +61,11 @@ public final class PluginConfig implements Serializable {
     public String useMessage = "&aAnty-Nogi zostały aktywowane!";
     public String useNo = "&cAnty-Nogi nie mogą zostać aktywowane w tej chwili!";
     public String useNoReUse = "&cPoczekaj {SECONDS} sekund ({MILLI_SECONDS}ms) ({SECONDS}.{MILLI_WIHOUT_SECONDS} sek)!";
-    public String onFoundPlayer = "&cNie ma takiego gracza!";
-    public String onPermission = "&cNie masz permisji do tego polecenia!";
+    public String noFoundPlayer = "&cNie ma takiego gracza!";
+    public String noPermission = "&cNie masz permisji do tego polecenia! ({PERMISSIONS})";
     public String giveAntiLegsAdmin = "&aPomyślnie dano antynogi graczowi!";
+    public String reload = "&aReloaded configuration!";
+
     public String giveAntiLegs = "&aDostałeś Antynogi {TYPE}!";
 
     @Description("")

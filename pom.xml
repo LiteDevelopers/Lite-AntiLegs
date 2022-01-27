@@ -39,7 +39,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>${project.name} ${project.version} (1.8-1.17)</finalName>
+                            <finalName>${project.name} ${project.version} (MC 1.8-1.18)</finalName>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <relocation>
@@ -88,7 +88,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <version>1.18.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -96,13 +96,13 @@
         <dependency>
             <groupId>net.dzikoysk</groupId>
             <artifactId>cdn</artifactId>
-            <version>1.13.3</version>
+            <version>1.13.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.panda-lang</groupId>
             <artifactId>expressible</artifactId>
-            <version>1.1.9</version>
+            <version>1.1.12</version>
         </dependency>
         <dependency>
             <groupId>org.panda-lang</groupId>
@@ -114,7 +114,7 @@
         <dependency>
             <groupId>dev.rollczi.litecommands</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.4.0</version>
+            <version>1.5.0</version>
             <scope>compile</scope>
         </dependency>
 

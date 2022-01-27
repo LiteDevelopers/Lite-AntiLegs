@@ -6,8 +6,9 @@ package dev.rollczi.antilegs;
 
 import dev.rollczi.antilegs.commands.AntiLegsArgument;
 import dev.rollczi.antilegs.commands.AntiLegsCommand;
+import dev.rollczi.antilegs.commands.LitePermissionMessage;
 import dev.rollczi.antilegs.commands.PlayerArgument;
-import dev.rollczi.antilegs.config.ConfigManager;
+import dev.rollczi.antilegs.config.ConfigurationManager;
 import dev.rollczi.antilegs.config.PluginConfig;
 import dev.rollczi.antilegs.listeners.ArmorEquipBlock;
 import dev.rollczi.antilegs.listeners.PlayerDamageByPlayer;
@@ -32,7 +33,7 @@ public final class LiteAntiLegs extends JavaPlugin {
 
     @Getter private static LiteAntiLegs instance;
 
-    @Getter private ConfigManager configManager;
+    @Getter private ConfigurationManager configManager;
     @Getter private CombatManager combatManager;
     @Getter private CooldownManager cooldownManager;
     @Getter private AntiLegsManager antiLegsManager;
@@ -41,20 +42,24 @@ public final class LiteAntiLegs extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        this.configManager = new ConfigManager(this);
+        this.configManager = new ConfigurationManager(this.getDataFolder());
         this.configManager.loadConfigs(); // load data from config file
-        this.combatManager = new CombatManager(this);
-        this.cooldownManager = new CooldownManager();
-        this.antiLegsManager = new AntiLegsManager();
-        this.antiLegsManager.registerAntiLeg(StandardAntiLegs.create(configManager.getPluginConfig()));
 
         PluginConfig config = this.configManager.getPluginConfig();
 
+        this.combatManager = new CombatManager(config);
+        this.cooldownManager = new CooldownManager();
+        this.antiLegsManager = new AntiLegsManager();
+        this.antiLegsManager.registerAntiLeg(StandardAntiLegs.create(config));
+
         this.liteCommands = LiteBukkitFactory.builder(this.getServer(), "lite-antilegs")
+                .bind(LiteAntiLegs.class, () -> this)
+                .bind(ConfigurationManager.class, () -> configManager)
+
                 .argument(Player.class, new PlayerArgument(this))
                 .argument(AntiLegs.class, new AntiLegsArgument(this))
-                .bind(LiteAntiLegs.class, this)
-                .message(ValidationInfo.NO_PERMISSION, config.onPermission)
+
+                .message(ValidationInfo.NO_PERMISSION, new LitePermissionMessage(config))
                 .command(AntiLegsCommand.class)
                 .register();
 

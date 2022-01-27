@@ -5,7 +5,9 @@
 package dev.rollczi.antilegs.commands;
 
 import dev.rollczi.antilegs.LiteAntiLegs;
-import dev.rollczi.litecommands.inject.SingleArgumentHandler;
+import dev.rollczi.litecommands.LiteInvocation;
+import dev.rollczi.litecommands.argument.ArgumentName;
+import dev.rollczi.litecommands.argument.SingleArgumentHandler;
 import dev.rollczi.litecommands.valid.ValidationCommandException;
 import dev.rollczi.litecommands.valid.ValidationInfo;
 import org.bukkit.Bukkit;
@@ -16,6 +18,7 @@ import panda.std.Option;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ArgumentName("player")
 public class PlayerArgument implements SingleArgumentHandler<Player> {
 
     private final LiteAntiLegs plugin;
@@ -25,9 +28,9 @@ public class PlayerArgument implements SingleArgumentHandler<Player> {
     }
 
     @Override
-    public Player parse(String argument) throws ValidationCommandException {
+    public Player parse(LiteInvocation invocation, String argument) throws ValidationCommandException {
         return Option.of(Bukkit.getPlayer(argument))
-                .orThrow(() -> new ValidationCommandException(ValidationInfo.CUSTOM, plugin.getConfigManager().getPluginConfig().onFoundPlayer));
+                .orThrow(() -> new ValidationCommandException(ValidationInfo.CUSTOM, plugin.getConfigManager().getPluginConfig().noFoundPlayer));
     }
 
     @Override
