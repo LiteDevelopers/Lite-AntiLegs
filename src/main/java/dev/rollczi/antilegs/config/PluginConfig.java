@@ -31,7 +31,7 @@ public final class PluginConfig extends AbstractConfigWithResource {
             "#                                           ",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
             "#                                          #",
-            "#           Lite-AntiLegs v2.0.2           #",
+            "#           Lite-AntiLegs v2.1.0           #",
             "#                by Rollczi                #",
             "#                                          #",
             "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #",
